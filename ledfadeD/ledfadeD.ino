@@ -3,18 +3,22 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
 }
 
-void timedBlink(int interval)
+void dimmer(int freq,int duty)
 {
+  int period, onTime, offTime;
+  period = 100/freq;
+  onTime = period * duty/100;
+  offTime = period - onTime;
   digitalWrite(LED_BUILTIN,HIGH);
-  delay(interval*1000);
+  delay(onTime);
   digitalWrite(LED_BUILTIN,LOW);
-  delay(1000);
+  delay(offTime);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  for(int x=1; x<4; x++)
+  for(int x=100;x>=0;x--)
   {
-    timedBlink(x);
+    dimmer(10,x);
   }
 }
