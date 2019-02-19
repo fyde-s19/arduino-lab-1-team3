@@ -6,7 +6,7 @@ void setup() {
 void dimmer(int freq,int duty)
 {
   int period, onTime, offTime;
-  period = 100/freq;
+  period = 5000/freq;
   onTime = period * duty/100;
   offTime = period - onTime;
   digitalWrite(LED_BUILTIN,HIGH);
@@ -15,10 +15,18 @@ void dimmer(int freq,int duty)
   delay(offTime);
 }
 
+  int x = 100;
+  int dir = 0;
+  
 void loop() {
   // put your main code here, to run repeatedly:
-  for(int x=100;x>=0;x--)
+
+  for(int x=100; x>=0; x--)
   {
-    dimmer(10,x);
+    dimmer(500,x);
+  }
+  for(int y=0; y<=100; y++)
+  {
+    dimmer(500,y);
   }
 }
